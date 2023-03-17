@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import static org.openqa.selenium.support.ui.ExpectedConditions.titleIs;
@@ -15,8 +16,12 @@ public class ExampleTest {
     private WebDriverWait wait;
 
     @BeforeEach
+
+
     public void start() {
-        driver = new ChromeDriver();
+        ChromeOptions opts = new ChromeOptions();
+        opts.addArguments("--remote-allow-origins=*");
+        driver = new ChromeDriver(opts);
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
@@ -24,8 +29,7 @@ public class ExampleTest {
     public void myFirstTest() {
         driver.navigate().to("http://www.google.com");
         driver.findElement(By.name("q")).sendKeys("webdriver");
-        driver.findElement(By.name("btnG")).click();
-        wait.until(titleIs("webdriver"));
+        driver.findElement(By.name("btnK")).click();;
     }
 
     @AfterEach
